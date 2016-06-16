@@ -33,6 +33,7 @@ flag-api:
   build: api
   links:
     - consul
+
 flag-srv:
   container_name: flag-srv
   command: --registry_address=registry:8500 --elasticsearch_hosts=elasticsearch:9200
@@ -52,10 +53,4 @@ elasticsearch:
    ES_HEAP_SIZE: 512m
    ES_CLUSTER_NAME: Kazoup
 
-#db-register:
-#  command: `--registry_address=registry:8500 register service '{"name": "go.micro.db.flags", "version": "0.0.1", "nodes": [{"id": "foo-1", "address": "mysql", "port": 3306, "metadata": {"driver": "mysql"}}]}'`
-#  image: microhq/micro
-#  links:
-#    - consul
-#    - mysql
 
