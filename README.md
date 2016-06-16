@@ -1,6 +1,10 @@
-# Flag Srv
+# Flag 
 
-This is the Flag service with fqdn go.micro.srv.flag.
+Flag service with fqdn go.micro.srv.flag
+Flag API with fqdn go.micro.api.flag
+
+Data is stored in Elasticsearch.
+
 
 ## Getting Started
 
@@ -14,22 +18,97 @@ Run Consul
 $ consul agent -dev -advertise=127.0.0.1
 ```
 
-### Run Service
+### Run Service manually
 
 ```
-$ go run main.go
+$ go run srv/main.go
 ```
 
-### Building a container
+### Run API manually
 
-If you would like to build the docker container do the following
 ```
-CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w' -o flag-srv ./main.go
-docker build -t flag-srv .
-
+$ go run api/main.go
 ```
 
 
-{"key": "somekey-asdfasdf",
-"description": "asdfasdfasdf",
-"value": true}
+### Run docker containers
+Compile Go binaries and build docker image. 
+```
+make 
+```
+
+Run docker container:
+```
+docker-compose -f docker-compose-build.yml up
+```
+
+
+## Usage
+
+### Create flag
+ 
+```
+micro query go.micro.srv.flag Flag.Create '{"key": "my-unique-flag-key", "description": "You know, for UI feed", "value": true}'
+{}
+```
+
+
+### Read flag
+ 
+```
+micro query go.micro.srv.flag Flag.Read '{"key": "my-unique-flag-key"}'
+{
+	"key": "my-unique-flag-key",
+	"description": "You know, for UI feed",
+	"value": true
+}
+
+```
+
+
+### Flip flag
+ 
+```
+micro query go.micro.srv.flag Flag.Flip '{"key": "my-unique-flag-key"}'
+{}
+```
+
+
+### Delete flag
+ 
+```
+micro query go.micro.srv.flag Flag.Delete '{"key": "my-unique-flag-key"}'
+{}
+```
+
+
+### List flags
+ 
+```
+micro query go.micro.srv.flag Flag.List '{}'
+{
+	"result": [
+		{
+			"key": "4",
+			"description": "asdfasdfasdf"
+		},
+		{
+			"key": "somekey-asdfasdf",
+			"description": "asdfasdfasdf",
+			"value": true
+		},
+		{
+			"key": "3",
+			"description": "asdfasdfasdf",
+			"value": true
+		},
+		{
+			"key": "34",
+			"description": "asdfasdfafffffffffffffffffffffffsdf",
+			"value": true
+		}
+	]
+}
+```
+
+
