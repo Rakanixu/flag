@@ -71,17 +71,18 @@ func List() (*proto.ListResponse, error) {
 		return nil, err
 	}
 
-	var result string
+	var flags []*proto.ReadResponse
 	for _, hit := range out.Hits.Hits {
-		var b []byte
-		if b, err = hit.Source.MarshalJSON(); err != nil {
+		var cr *proto.ReadResponse
+		if err = json.Unmarshal(*hit.Source, &cr); err != nil {
 			return nil, err
 		}
-		result += string(b)
+
+		flags = append(flags, cr)
 	}
 
 	lr := &proto.ListResponse{
-		Result: result,
+		Result: flags,
 	}
 
 	return lr, nil

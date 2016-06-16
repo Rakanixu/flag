@@ -132,7 +132,7 @@ func (f *Flag) Delete(ctx context.Context, req *api.Request, rsp *api.Response) 
 }
 
 // List API handler
-func (e *Flag) List(ctx context.Context, req *api.Request, rsp *api.Response) error {
+func (f *Flag) List(ctx context.Context, req *api.Request, rsp *api.Response) error {
 	srvReq := client.NewRequest(
 		"go.micro.srv.flag",
 		"Flag.List",
