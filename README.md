@@ -9,6 +9,12 @@ Data is stored in Elasticsearch.
 ## Getting Started
 
 ### Prerequisites
+Get Micro
+[Micro](https://github.com/micro)
+```
+go get github.com/micro
+```
+
 
 Install Consul
 [https://www.consul.io/intro/getting-started/install.html](https://www.consul.io/intro/getting-started/install.html)
