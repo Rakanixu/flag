@@ -15,14 +15,14 @@ Get Micro
 go get github.com/micro
 ```
 
-
-Install Consul
-[https://www.consul.io/intro/getting-started/install.html](https://www.consul.io/intro/getting-started/install.html)
-
-Run Consul
+This microservice needs elatiscsearch service up and running. 
 ```
-$ consul agent -dev -advertise=127.0.0.1
+go get github.com/Rakanixu/elasticsearch
+make
+docker-compose -f docker-compose-build.yml up
 ```
+Now we've got Consul, Elasticsearch (DB), micro api, micro web, elasticsearch-srv and elasticsearch-api up and running. 
+
 
 ### Run Service manually
 
