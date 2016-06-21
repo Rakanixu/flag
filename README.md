@@ -44,71 +44,8 @@ docker-compose -f docker-compose-build.yml up
 
 
 ## Usage
+[API](https://github.com/Rakanixu/flag/tree/master/api)
 
-### Create flag
- 
-```
-micro query go.micro.srv.flag Flag.Create '{"key": "my-unique-flag-key", "description": "You know, for UI feed", "value": true}'
-{}
-```
-
-
-### Read flag
- 
-```
-micro query go.micro.srv.flag Flag.Read '{"key": "my-unique-flag-key"}'
-{
-	"key": "my-unique-flag-key",
-	"description": "You know, for UI feed",
-	"value": true
-}
-
-```
-
-
-### Flip flag
- 
-```
-micro query go.micro.srv.flag Flag.Flip '{"key": "my-unique-flag-key"}'
-{}
-```
-
-
-### Delete flag
- 
-```
-micro query go.micro.srv.flag Flag.Delete '{"key": "my-unique-flag-key"}'
-{}
-```
-
-
-### List flags
- 
-```
-micro query go.micro.srv.flag Flag.List '{}'
-{
-	"result": [
-		{
-			"key": "4",
-			"description": "asdfasdfasdf"
-		},
-		{
-			"key": "somekey-asdfasdf",
-			"description": "asdfasdfasdf",
-			"value": true
-		},
-		{
-			"key": "3",
-			"description": "asdfasdfasdf",
-			"value": true
-		},
-		{
-			"key": "34",
-			"description": "asdfasdfafffffffffffffffffffffffsdf",
-			"value": true
-		}
-	]
-}
-```
+[Microservice](https://github.com/Rakanixu/flag/tree/master/srv)
 
 
