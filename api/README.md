@@ -1,4 +1,4 @@
-# Flag API
+# Flag API [![GoDoc](https://godoc.org/github.com/Rakanixu/flag/api?status.svg)](https://godoc.org/github.com/Rakanixu/api/srv)
 
 Flag API with fqdn go.micro.api.flag
 

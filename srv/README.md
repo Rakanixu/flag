@@ -1,4 +1,4 @@
-# Flag service
+# Flag service [![GoDoc](https://godoc.org/github.com/Rakanixu/flag/srv?status.svg)](https://godoc.org/github.com/Rakanixu/flag/srv)
 
 Flag microservice with fqdn go.micro.srv.flag
 
