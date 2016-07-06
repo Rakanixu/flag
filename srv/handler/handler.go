@@ -3,7 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
-	elasticsearch "github.com/Rakanixu/elasticsearch/srv/proto/elasticsearch"
+	elasticsearch "github.com/Rakanixu/elastic/srv/proto/elastic"
 	proto "github.com/Rakanixu/flag/srv/proto/flag"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/errors"
@@ -23,8 +23,8 @@ func (f *Flag) Create(ctx context.Context, req *proto.CreateRequest, rsp *proto.
 	data, _ := json.Marshal(req)
 
 	srvReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Create",
+		"go.micro.srv.elastic",
+		"Elastic.Create",
 		&elasticsearch.CreateRequest{
 			Index: "flags", // Hardcoded index for flags
 			Type:  "flag",  // Hardcoded type ...
@@ -47,8 +47,8 @@ func (f *Flag) Read(ctx context.Context, req *proto.ReadRequest, rsp *proto.Read
 	}
 
 	srvReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Read",
+		"go.micro.srv.elastic",
+		"Elastic.Read",
 		&elasticsearch.ReadRequest{
 			Index: "flags", // Hardcoded index for flags
 			Type:  "flag",  // Hardcoded type ...
@@ -80,8 +80,8 @@ func (f *Flag) Flip(ctx context.Context, req *proto.FlipRequest, rsp *proto.Flip
 
 	// Read the record to flip
 	srvReadReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Read",
+		"go.micro.srv.elastic",
+		"Elastic.Read",
 		&elasticsearch.ReadRequest{
 			Index: "flags", // Hardcoded index for flags
 			Type:  "flag",  // Hardcoded type ...
@@ -103,8 +103,8 @@ func (f *Flag) Flip(ctx context.Context, req *proto.FlipRequest, rsp *proto.Flip
 
 	// Update the record
 	srvUpdateReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Update",
+		"go.micro.srv.elastic",
+		"Elastic.Update",
 		&elasticsearch.UpdateRequest{
 			Index: "flags", // Hardcoded index for flags
 			Type:  "flag",  // Hardcoded type ...
@@ -127,8 +127,8 @@ func (f *Flag) Delete(ctx context.Context, req *proto.DeleteRequest, rsp *proto.
 	}
 
 	srvReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Delete",
+		"go.micro.srv.elastic",
+		"Elastic.Delete",
 		&elasticsearch.DeleteRequest{
 			Index: "flags", // Hardcoded index for flags
 			Type:  "flag",  // Hardcoded type ...
@@ -147,8 +147,8 @@ func (f *Flag) Delete(ctx context.Context, req *proto.DeleteRequest, rsp *proto.
 func (f *Flag) List(ctx context.Context, req *proto.ListRequest, rsp *proto.ListResponse) error {
 	// Search in flags index
 	srvReq := client.NewRequest(
-		"go.micro.srv.elasticsearch",
-		"Elasticsearch.Search",
+		"go.micro.srv.elastic",
+		"Elastic.Search",
 		&elasticsearch.SearchRequest{
 			Index:  "flags", // Hardcoded index for flags
 			Type:   "flag",  // Hardcoded type ...
